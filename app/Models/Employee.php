@@ -17,5 +17,6 @@ class Employee extends Model
         'lastname',
         'address',
         'contact_no',
+        'image_path'
     ];
 }

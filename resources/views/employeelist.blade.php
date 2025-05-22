@@ -214,6 +214,24 @@
         }
     </style>
 
+    <style>
+        .img-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .img-container img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    </style>
+
     <div class="new-button-container">
         <a href="/employee/create" class="button">New</a>
     </div>
@@ -238,6 +256,7 @@
     @endif
 
 
+
     <table border="1">
         <thead>
             <tr>
@@ -248,6 +267,7 @@
                 <th>Address</th>
                 <th>Contact Number</th>
                 <th>Actions</th>
+                <th>Image</th>
             </tr>
         </thead>
         <tbody>
@@ -269,6 +289,11 @@
                                     onclick="return confirm('Are you sure you want to delete this employee?')">Delete</button>
                             </form>
                             <a href="employee/{{ $employee->id }}"><button class="action-btn show-btn">View</button></a>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="img-container">
+                            <img src="{{ asset('/storage/' . $employee->employee_picture) }}" alt="Image">
                         </div>
                     </td>
                 </tr>

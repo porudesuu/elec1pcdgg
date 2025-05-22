@@ -22,7 +22,8 @@ class manageEmployeeController extends Controller
      */
     public function create()
     {
-        return view('addemployee');
+        $totalEmp = Employee::all()->count();
+        return view('addemployee', compact('totalEmp'));
     }
 
     /**
@@ -37,6 +38,14 @@ class manageEmployeeController extends Controller
         $employee->lastname = $request->input('lastname');
         $employee->address = $request->input('address');
         $employee->contact_no = $request->input('contact_no');
+        
+        if ($request->hasFile('employee_picture')) {
+            $image = $request->file('employee_picture');
+            $filename = time() . '_' . $image->getClientOriginalName();
+            $path = $image->storeAs('public/images', $filename);
+            $employee->image_path = 'images/' . $filename;
+        }
+        
         $employee->save();
 
         $msg = "Employee " . $employee->employeeID . ":" . $employee->firstname . " " . $employee->lastname . " is Added!";

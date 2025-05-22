@@ -77,11 +77,12 @@
     <div class="form-container">
 
         <h2>New Employee Form</h2>
-        <form action="/employee" method="POST">
+        <form action="/employee" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
                 <label for="employeeID">Employee ID:</label>
-                <input type="text" id="employeeID" name="employeeID" required>
+                <input type="text" id="employeeID" name="employeeID" value="E-{{ date('y') }}-{{ $totalEmp + 1 }}" required
+                    readonly>
             </div>
             <div class="form-group">
                 <label for="firstname">First Name:</label>
@@ -102,6 +103,10 @@
             <div class="form-group">
                 <label for="contact_no">Contact Number:</label>
                 <input type="text" id="contact_no" name="contact_no" required>
+            </div>
+            <div class="form-group">
+                <label for="employee_picture">Employee Picture:</label>
+                <input type="file" id="employee_picture" name="employee_picture" accept="image/*">
             </div>
             <div class="form-actions">
                 <button type="submit" class="submit-btn">Submit</button>
